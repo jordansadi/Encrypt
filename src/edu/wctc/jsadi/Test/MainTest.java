@@ -17,7 +17,7 @@ public class MainTest extends junit.framework.TestCase {
     public void tearDown() throws Exception {}
 
     @Test
-    public void testEncrypt() {
+    public void testDecrypt() {
         BufferedReader testReader = null;
         String testString = "";
 
@@ -34,5 +34,25 @@ public class MainTest extends junit.framework.TestCase {
         }
 
         assertEquals(testString, "Please encrypt this file.");
+    }
+
+    @Test
+    public void testEncrypt() {
+        BufferedReader testReader = null;
+        String testString = "";
+
+        try {
+            testReader = new BufferedReader(new FileReader("encrypted.txt"));
+        } catch (FileNotFoundException e) {
+            System.out.println("File Open Error: encrypted.txt " + e);
+        }
+
+        try {
+            testString = testReader.readLine();
+        } catch (Exception e) {
+            System.out.println("File Write Error: encrypted.txt " + e);
+        }
+
+        assertEquals(testString, " ØÊÂæÊ@ÊÜÆäòàè@èÐÒæ@ÌÒØÊ\\");
     }
 }
